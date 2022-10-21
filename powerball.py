@@ -95,7 +95,7 @@ model.add(Dense(number_of_features))
 model.compile(loss='mse', optimizer='rmsprop', metrics=['accuracy'])
 
 # Training
-model.fit(train, label, batch_size=100, epochs=30)
+model.fit(train, label, batch_size=100, epochs=5000)
 
 # Prediction
 to_predict = arr
