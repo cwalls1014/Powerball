@@ -91,7 +91,7 @@ model.add(Dropout(0.2))
 #model.add(Bidirectional(LSTM(240, input_shape=(window_length, number_of_features), return_sequences=True)))
 #model.add(Bidirectional(LSTM(240, input_shape=(window_length, number_of_features), return_sequences=False)))
 model.add(Dense(69))
-#model.add(Dense(number_of_features))
+model.add(Dense(number_of_features))
 model.compile(loss='mse', optimizer='rmsprop', metrics=['accuracy'])
 
 # Training
