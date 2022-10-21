@@ -83,7 +83,7 @@ for i in range(0, number_of_rows - window_length):
 # LSTM model using TensorFlow backend
 batch_size = 100
 model = Sequential()
-#model.add(Bidirectional(LSTM(240, input_shape=(window_length, number_of_features), return_sequences=True)))
+model.add(Bidirectional(LSTM(240, input_shape=(window_length, number_of_features), return_sequences=True)))
 model.add(Dropout(0.2))
 #model.add(Bidirectional(LSTM(240, input_shape=(window_length, number_of_features), return_sequences=True)))
 model.add(Dropout(0.2))
