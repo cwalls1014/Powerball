@@ -73,7 +73,7 @@ number_of_features = df.values.shape[1]
 
 # Creating train dataset and labels for each row.
 train = np.empty([number_of_rows - window_length, window_length, number_of_features], dtype=float)
-label = np.empty([number_of_rows - window_length, number_of_features], dtype=float)
+label = np.empty([number_of_rows - window_length, window_length, number_of_features], dtype=float)
 window_length = math.floor(len(arr) * .9)
 
 for i in range(0, number_of_rows - window_length):
@@ -83,10 +83,6 @@ for i in range(0, number_of_rows - window_length):
 # LSTM model using TensorFlow backend
 batch_size = 100
 model = Sequential()
-model.add(Bidirectional(LSTM(240, input_shape=(window_length, number_of_features), return_sequences=True)))
-model.add(Dropout(0.2))
-model.add(Bidirectional(LSTM(240, input_shape=(window_length, number_of_features), return_sequences=True)))
-model.add(Dropout(0.2))
 #model.add(Bidirectional(LSTM(240, input_shape=(window_length, number_of_features), return_sequences=True)))
 #model.add(Bidirectional(LSTM(240, input_shape=(window_length, number_of_features), return_sequences=True)))
 #model.add(Bidirectional(LSTM(240, input_shape=(window_length, number_of_features), return_sequences=False)))
@@ -95,10 +91,10 @@ model.add(Dense(number_of_features))
 model.compile(loss='mse', optimizer='rmsprop', metrics=['accuracy'])
 
 # Training
-model.fit(train, label, batch_size=100, epochs=5000)
+model.fit(train, label, batch_size=100, epochs=11)
 
 # Prediction
 to_predict = arr
 scaled_to_predict = scaler.transform(to_predict)
-scaled_prediction_output_1 = model.predict(np.array([scaled_to_predict]))
+scaled_prediction_output_1 = model.predict(([scaled_to_predict]))
 print(scaler.inverse_transform(scaled_prediction_output_1).astype(int)[0])
